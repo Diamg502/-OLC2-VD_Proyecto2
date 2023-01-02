@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  servidor:
+     image: diamg/prueba:prueba
+     container_name: prueba 
+     ports:
+       - "3000:5000"
+  servidor2:
+    image: diamg/prueba:prueba
+    container_name: prueba
+    ports:
+        - "3001:5000"
