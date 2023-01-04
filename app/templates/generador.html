@@ -1,0 +1,122 @@
+
+{% extends "layout.html" %}
+{% block content  %}
+
+<div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Generador</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Grafica</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+            <form action="/grafica" method="post" enctype="multipart/form-data">
+                <!--<input type="text" name="columna" placeholder="ingresa la columna">-->
+                <h2>Seleccion de variables</h2>
+
+                <label for="Variable Dependiente">Escoge Variable Dependiente:</label>
+                <select name="variable1" id ="NombreVariable1">
+                  {% for columna in columnas.columnas %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                  {% endfor %}
+                </select>
+
+                <label for="Variable Independiente">Escoge Variable Independiente:</label>
+                <select name="variable2" id ="NombreVariable2">
+                  {% for columna in columnas.columnas %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                  {% endfor %}
+                </select>
+
+                <h3>Escoge el algoritmo</h3>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="tipo" id="inlineRadio1" value="g1" >
+                  <label class="form-check-label" for="inlineRadio1">Regresión linea</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="tipo" id="inlineRadio2" value="g2" >
+                  <label class="form-check-label" for="inlineRadio2">Regresión polinomial</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="tipo" id="inlineRadio3" value="g3" >
+                  <label class="form-check-label" for="inlineRadio3">Clasificador Gaussiano</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="tipo" id="inlineRadio4" value="g4" onclick="myFunction()">
+                  <label class="form-check-label" for="inlineRadio4">Clasificador de árboles de decisión</label>
+                </div>
+
+                <center>
+                  <p id="text1" style="display:none">Variable Arbol 3:</p>
+                  <select name="variable3" id ="NombreVariable3" style="display: none">
+                  {% for columna in columnas.columnas %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                  {% endfor %}
+                  </select>
+
+                  <p id="text2" style="display:none">Variable Arbol 4:</p>
+                  <select name="variable4" id ="NombreVariable4" style="display: none">
+                  {% for columna in columnas.columnas %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                  {% endfor %}
+                  </select>
+
+                  <p id="text3" style="display:none">Variable Arbol 5:</p>
+                  <select name="variable5" id ="NombreVariable5" style="display: none">
+                  {% for columna in columnas.columnas %}
+                  <option value="{{ columna }}">{{ columna }}</option>
+                  {% endfor %}
+                  </select>
+                </center>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="checkbox" name="tipo" id="inlineRadio4" value="g5">
+                  <label class="form-check-label" for="inlineRadio5">Redes neuronales</label>
+                </div>
+                <br>
+                <!--<input type="text" name="tipo" placeholder="ingresa el tipo de columna">-->
+                <input type="text" value="{{ columnas.filename }}" name="filename" hidden>
+                <input type="submit" value="Desplegar informacion" class="btn btn-success">
+
+                <script>
+                  function myFunction() {
+                    var checkBox = document.getElementById("inlineRadio4");
+                    var text1 = document.getElementById("text1");
+                    var text2 = document.getElementById("text2");
+                    var text3 = document.getElementById("text3");
+                    var v3 = document.getElementById("NombreVariable3");
+                    var v4 = document.getElementById("NombreVariable4");
+                    var v5 = document.getElementById("NombreVariable5");
+                    if (checkBox.checked == true){
+                      text1.style.display = "block";
+                      text2.style.display = "block";
+                      text3.style.display = "block";
+                      v3.style.display = "block";
+                      v4.style.display = "block";
+                      v5.style.display = "block";
+                    } else {
+                       text1.style.display = "none";
+                       text2.style.display = "none";
+                      text3.style.display = "none";
+                       v3.style.display = "none";
+                       v4.style.display = "none";
+                      v5.style.display = "none";
+                    }
+                  }
+                  </script>
+
+
+            </form>
+        </div>
+      </div>
+
+
+
+{% endblock %}
